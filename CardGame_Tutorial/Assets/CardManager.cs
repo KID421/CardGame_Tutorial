@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CardManager : MonoBehaviour
 {
@@ -10,11 +11,11 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
-        int rPlayer = Random.Range(1, 10);
-        cardPlayer = new Card(rPlayer, -5, images[rPlayer - 1]);
+        int rPlayer = Random.Range(0, 10);
+        cardPlayer = new Card(rPlayer, -5, images[rPlayer]);
 
         int rPC = Random.Range(1, 10);
-        cardPC = new Card(rPC, 5, images[rPC - 1]);
+        cardPC = new Card(rPC, 5, images[rPC]);
 
         if (cardPlayer.number > cardPC.number)
         {
@@ -27,6 +28,14 @@ public class CardManager : MonoBehaviour
         else
         {
             tip.text = "平手";
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }
